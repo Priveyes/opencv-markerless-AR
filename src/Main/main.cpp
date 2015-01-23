@@ -44,7 +44,7 @@
 #include "cameraCalibration.h"
 #include "guiAR.h"
 #ifdef _DEBUG
-#include <gtest/gtest.h>
+//#include <gtest/gtest.h>
 #endif
 
 using namespace std;
@@ -55,7 +55,7 @@ using namespace cvar::or;
 int main(int argc, char * argv[])
 {
 #ifdef _DEBUG
-	::testing::InitGoogleTest(&argc, argv);
+	//::testing::InitGoogleTest(&argc, argv);
 #endif
 
 //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -103,7 +103,7 @@ int main(int argc, char * argv[])
 		}
 #ifdef _DEBUG
 		else if(opt=="run_test"){
-			RUN_ALL_TESTS();
+			//RUN_ALL_TESTS();
 		}
 #endif
 		else if(opt=="set_detector"){

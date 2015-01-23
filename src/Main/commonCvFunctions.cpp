@@ -66,7 +66,10 @@ void readMatBinary(std::ifstream& ifs, cv::Mat& in_mat)
 
 	in_mat.release();
 	in_mat.create(rows, cols, type);
-	ifs.read((char*)(in_mat.data), in_mat.elemSize() * in_mat.total());
+	int size = in_mat.elemSize();
+	int total = in_mat.total();
+	if(total)
+		ifs.read((char*)(in_mat.data), in_mat.elemSize() * in_mat.total());
 }
 
 
