@@ -67,20 +67,20 @@ public:
 	int size_fix_mode;
 	int fixed_size;
 
-	int morph_interval;		// ƒtƒŒ[ƒ€ŠÔØ‚è‘Ö‚¦ƒCƒ“ƒ^[ƒoƒ‹iƒtƒŒ[ƒ€”j
-	int spread_interval;	// ‰æ‘œŠg‘åØ‘ÖƒCƒ“ƒ^[ƒoƒ‹iƒtƒŒ[ƒ€”j
+	int morph_interval;		// ãƒ•ãƒ¬ãƒ¼ãƒ é–“åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼‰
+	int spread_interval;	// ç”»åƒæ‹¡å¤§åˆ‡æ›¿ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼‰
 
 protected:
-	int slide_status;	// Œ»İ‚Ì•\¦ƒXƒe[ƒ^ƒX
-	static const int SLIDE_INIT = 0x00;	// ‚P”Ô–Ú‚ÌƒXƒ‰ƒCƒh‚Ì“§‰ßˆ—
-	static const int SLIDE_ALPHA = 0x01;	// ‚Q”Ô–ÚˆÈ~‚ÌƒXƒ‰ƒCƒh‚Ì“§‰ßˆ—
-	static const int SLIDE_NORM = 0x02;	// ’Êí‚ÌƒXƒ‰ƒCƒhdô•\¦
-	static const int SLIDE_PRESPREAD = 0x04;	// ƒXƒ‰ƒCƒhŠg‘åˆ—‘O‚Ì“§‰ßˆ—
-	static const int SLIDE_SPREADING = 0x08;	// Šg‘åˆ—
-	static const int SLIDE_LARGEALPHA = 0x0f;	// Šg‘åƒXƒ‰ƒCƒh‚Ì“§‰ßˆ—
-	static const int SLIDE_LARGE = 0x10;	// Šg‘å•\¦
-	static const int SLIDE_NORMLAST = 0x20;	// ÅIƒXƒ‰ƒCƒhidô•\¦j
-	static const int SLIDE_LARGELAST = 0x40;	// ÅIƒXƒ‰ƒCƒh(Šg‘å•\¦)
+	int slide_status;	// ç¾åœ¨ã®è¡¨ç¤ºã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	static const int SLIDE_INIT = 0x00;	// ï¼‘ç•ªç›®ã®ã‚¹ãƒ©ã‚¤ãƒ‰ã®é€éå‡¦ç†
+	static const int SLIDE_ALPHA = 0x01;	// ï¼’ç•ªç›®ä»¥é™ã®ã‚¹ãƒ©ã‚¤ãƒ‰ã®é€éå‡¦ç†
+	static const int SLIDE_NORM = 0x02;	// é€šå¸¸ã®ã‚¹ãƒ©ã‚¤ãƒ‰é‡ç•³è¡¨ç¤º
+	static const int SLIDE_PRESPREAD = 0x04;	// ã‚¹ãƒ©ã‚¤ãƒ‰æ‹¡å¤§å‡¦ç†å‰ã®é€éå‡¦ç†
+	static const int SLIDE_SPREADING = 0x08;	// æ‹¡å¤§å‡¦ç†
+	static const int SLIDE_LARGEALPHA = 0x0f;	// æ‹¡å¤§ã‚¹ãƒ©ã‚¤ãƒ‰ã®é€éå‡¦ç†
+	static const int SLIDE_LARGE = 0x10;	// æ‹¡å¤§è¡¨ç¤º
+	static const int SLIDE_NORMLAST = 0x20;	// æœ€çµ‚ã‚¹ãƒ©ã‚¤ãƒ‰ï¼ˆé‡ç•³è¡¨ç¤ºï¼‰
+	static const int SLIDE_LARGELAST = 0x40;	// æœ€çµ‚ã‚¹ãƒ©ã‚¤ãƒ‰(æ‹¡å¤§è¡¨ç¤º)
 	std::vector<SLIDE_INFO*>	slide_vec;
 	std::vector<SLIDE_INFO*>	spread_slide_vec;
 	std::vector<SLIDE_INFO*>::iterator	slide_itr;
@@ -98,7 +98,7 @@ protected:
 	double fore_dist;
 
 public:
-	// modelObjectƒƒ\ƒbƒh‚ÌƒI[ƒo[ƒ‰ƒCƒh
+	// modelObjectãƒ¡ã‚½ãƒƒãƒ‰ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	void init();
 	void loadModelFile(std::string filename);
 	void drawModel(int& frame_id);

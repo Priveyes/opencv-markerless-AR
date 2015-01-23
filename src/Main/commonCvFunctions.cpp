@@ -73,7 +73,7 @@ void readMatBinary(std::ifstream& ifs, cv::Mat& in_mat)
 }
 
 
-// Point2f\‘¢‘Ìvector‚ğMatŒ^‚Ö•ÏŠ·
+// Point2fæ§‹é€ ä½“vectorã‚’Matå‹ã¸å¤‰æ›
 Mat transPointVecToMat(vector<Point2f>& pt_vec)
 {
 	vector<unsigned char> mask;
@@ -125,7 +125,7 @@ Mat transPointVecToMat(vector<Point2f>& pt_vec, vector<unsigned char>& mask)
 }
 
 
-// Point2f\‘¢‘Ìvector‚ğMatŒ^‚Ö•ÏŠ·
+// Point2fæ§‹é€ ä½“vectorã‚’Matå‹ã¸å¤‰æ›
 Mat transPointVecToMat2D(vector<Point2f>& pt_vec)
 {
 	vector<unsigned char> mask;
@@ -177,7 +177,7 @@ Mat transPointVecToMat2D(vector<Point2f>& pt_vec, vector<unsigned char>& mask)
 	return retMat;
 }
 
-// Point2f\‘¢‘Ìvector‚ğÄŸÀ•W‚É‚µ‚ÄMatŒ^‚Ö•ÏŠ·
+// Point2fæ§‹é€ ä½“vectorã‚’æ–‰æ¬¡åº§æ¨™ã«ã—ã¦Matå‹ã¸å¤‰æ›
 Mat transPointVecToMatHom(vector<Point2f>& pt_vec)
 {
 	int size = pt_vec.size();
@@ -456,7 +456,7 @@ int checkInsideArea(vector<Point2f>& points, vector<Point2f>& corner_pts, vector
 }
 
 
-// pts‚ª‘S‚Ä‰æ‘œ—Ìˆæ“à‚É‚ ‚é‚©‚Ì”»’è
+// ptsãŒå…¨ã¦ç”»åƒé ˜åŸŸå†…ã«ã‚ã‚‹ã‹ã®åˆ¤å®š
 bool checkPtInsideImage(Size img_size, vector<Point2f>& pts)
 {
 	vector<Point2f>::iterator itr = pts.begin();
@@ -488,7 +488,7 @@ double erf(double x)
 }
 */
 
-// src_mat‚Ìƒ`ƒƒƒlƒ‹”‚ğdest_mat‚Ìƒ`ƒƒƒlƒ‹”‚É•ÏŠ·B‹ó‚¢‚½ƒ`ƒƒƒlƒ‹‚Éval‚ğ“ü‚ê‚é
+// src_matã®ãƒãƒ£ãƒãƒ«æ•°ã‚’dest_matã®ãƒãƒ£ãƒãƒ«æ•°ã«å¤‰æ›ã€‚ç©ºã„ãŸãƒãƒ£ãƒãƒ«ã«valã‚’å…¥ã‚Œã‚‹
 void resizeMatChannel(Mat& src_mat, Mat& dest_mat, double val)
 {
 	CV_Assert(src_mat.depth() == dest_mat.depth());
@@ -553,7 +553,7 @@ template<typename _Tp> void resizeMatChannelType(Mat& src_mat, Mat& dest_mat, do
 	}
 }
 
-// w’èƒ`ƒƒƒlƒ‹‚Ì’l‚ğval‚Éİ’è
+// æŒ‡å®šãƒãƒ£ãƒãƒ«ã®å€¤ã‚’valã«è¨­å®š
 void setChannelValue(Mat& dest_mat, int channel, double val)
 {
 	int type = dest_mat.depth();
@@ -620,7 +620,7 @@ template<typename _Tp> void decomposeHomographyType(Mat& H_mat, Mat& camera_matr
 		CV_Assert(H_mat.cols == 3 && H_mat.rows == 3 && camera_matrix.cols == 3 && camera_matrix.rows == 3);
 
 		int i,j;
-		Mat Amarker = camera_matrix.clone();	// ¢ŠEÀ•W‚ğ‰æ‘œÀ•W‚ÌkÚ‚É•ÏŠ·‚·‚és—ñ
+		Mat Amarker = camera_matrix.clone();	// ä¸–ç•Œåº§æ¨™ã‚’ç”»åƒåº§æ¨™ã®ç¸®å°ºã«å¤‰æ›ã™ã‚‹è¡Œåˆ—
 		Amarker.at<_Tp>(0,2) = marker_center.x;
 		Amarker.at<_Tp>(1,2) = marker_center.y;
 
@@ -660,8 +660,8 @@ template<typename _Tp> void decomposeHomographyType(Mat& H_mat, Mat& camera_matr
 }
 
 
-// ƒzƒ‚ƒOƒ‰ƒtƒB‚ğ‰ñ“]s—ñ‚Æ•Àis—ñ‚Ö•ÏX
-// H_mat: ƒzƒ‚ƒOƒ‰ƒtƒBs—ñ
+// ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ã‚’å›è»¢è¡Œåˆ—ã¨ä¸¦é€²è¡Œåˆ—ã¸å¤‰æ›´
+// H_mat: ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£è¡Œåˆ—
 void decomposeHomography(Mat& H_mat, Mat& camera_matrix, Mat& rotation, Mat& translation, Point2f marker_center)
 {
 	try{

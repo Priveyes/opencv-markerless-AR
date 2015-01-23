@@ -82,7 +82,7 @@ void slideModelObject::init()
 		for(int i=0; i<2; i++){
 			glBindTexture(GL_TEXTURE_2D, texture[i]);
 
-			//ƒeƒNƒXƒ`ƒƒ‚Ì‚¢‚ë‚¢‚ë‚Èƒpƒ‰ƒƒ^Ý’è
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã„ã‚ã„ã‚ãªãƒ‘ãƒ©ãƒ¡ã‚¿è¨­å®š
 			glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -109,7 +109,7 @@ void slideModelObject::loadModelFile(string filename)
 
 	try{
 		FileStorage cvfs;
-		// Configƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý
+		// Configãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 		cvfs.open(filename, CV_STORAGE_READ);
 		
 		FileNode fn,fn2;
@@ -196,7 +196,7 @@ void slideModelObject::drawModel(int& frame_id)
 		counter = 0;
 	}
 
-	//// ‘OŒi/”wŒii‰æ‘œØ‚è‘Ö‚¦ƒCƒ“ƒ^[ƒoƒ‹j•\Ž¦Ø‚è‘Ö‚¦ ////
+	//// å‰æ™¯/èƒŒæ™¯ï¼ˆç”»åƒåˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ï¼‰è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ ////
 	switch(slide_status){
 	case SLIDE_INIT:
 	case SLIDE_ALPHA:
@@ -217,7 +217,7 @@ void slideModelObject::drawModel(int& frame_id)
 		break;
 	}
 
-	///////// Šg‘åˆ——ps—ñŒvŽZ ///////////
+	///////// æ‹¡å¤§å‡¦ç†ç”¨è¡Œåˆ—è¨ˆç®— ///////////
 	switch(slide_status){
 	case  SLIDE_SPREADING:
 		if(counter == 0){
@@ -225,7 +225,7 @@ void slideModelObject::drawModel(int& frame_id)
 			glGetFloatv(GL_PROJECTION_MATRIX, prj_matrix);
 			glGetFloatv(GL_MODELVIEW_MATRIX, mv_src_matrix);
 		
-			calcDestSpreadMatrix(prj_matrix);	// –Ú•Wƒ‚ƒfƒ‹ƒrƒ…[s—ñƒZƒbƒg
+			calcDestSpreadMatrix(prj_matrix);	// ç›®æ¨™ãƒ¢ãƒ‡ãƒ«ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚»ãƒƒãƒˆ
 		}
 		GLfloat mv_mtrx2[16];
 		calcSpreadMatrix(mv_mtrx2);
@@ -244,7 +244,7 @@ void slideModelObject::drawModel(int& frame_id)
 	}
 
 
-	/////////// •\Ž¦ ////////////
+	/////////// è¡¨ç¤º ////////////
 	if(slide_status != SLIDE_INIT){
 		drawTexture();
 	}
@@ -261,7 +261,7 @@ void slideModelObject::drawModel(int& frame_id)
 		glPopMatrix();
 	}
 
-	///////// ƒXƒe[ƒ^ƒX‚Ì•ÏXˆ— ////////
+	///////// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å¤‰æ›´å‡¦ç† ////////
 	int pre_status = slide_status;
 	counter++;
 
@@ -475,13 +475,13 @@ void slideModelObject::updateTexture()
 
 	Mat img;
 
-	// OpenGL—p‚É‰æ‘œ”½“]
+	// OpenGLç”¨ã«ç”»åƒåè»¢
 	cv::flip(image, img, 0);
 //	Mat alphaimg(img.rows,img.cols,CV_8UC4);
 //	resizeMatChannel(img, alphaimg, 255);
 //	resizeMatChannel(alphaimg, img, 0);
 
-	//ƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚é‚½‚ßA2‚Ì—Ýæ‚ÉƒŠƒTƒCƒY‚·‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã‚‹ãŸã‚ã€2ã®ç´¯ä¹—ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹
 	cv::resize(img, texture_img, texture_img.size());
 //	cvResize(&((IplImage)alphaimg), &((IplImage)texture_img));
 }
@@ -535,13 +535,13 @@ void slideModelObject::updateForegroundTexture()
 
 	Mat img;
 
-	// OpenGL—p‚É‰æ‘œ”½“]
+	// OpenGLç”¨ã«ç”»åƒåè»¢
 	cv::flip(image, img, 0);
 	Mat alphaimg(img.rows,img.cols,CV_8UC4);
 	resizeMatChannel(img, alphaimg, 0);
 //	resizeMatChannel(alphaimg, img, 0);
 
-	//ƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚é‚½‚ßA2‚Ì—Ýæ‚ÉƒŠƒTƒCƒY‚·‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã‚‹ãŸã‚ã€2ã®ç´¯ä¹—ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹
 	cv::resize(alphaimg, foreground_img, foreground_img.size());
 }
 
@@ -562,10 +562,10 @@ void slideModelObject::updateAlphaChannel(float ratio)
 	double val = ratio * 255;
 	setChannelValue(foreground_img,3,val);
 
-	//ƒeƒNƒXƒ`ƒƒ‚ð“\‚è•t‚¯‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘ã‚‹
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
 	
-	//ª‚Ì‚â‚Â‚ðƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚é
+	//â†‘ã®ã‚„ã¤ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã‚‹
 //	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 		foreground_img.cols, foreground_img.rows,
@@ -575,14 +575,14 @@ void slideModelObject::updateAlphaChannel(float ratio)
 
 void slideModelObject::drawTexture()
 {
-	//ƒeƒNƒXƒ`ƒƒ‚ð“\‚è•t‚¯‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘ã‚‹
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
 		texture_img.cols,texture_img.rows,
 		0, GL_BGR_EXT, GL_UNSIGNED_BYTE, texture_img.data);
 
-	// ”wŒiƒeƒNƒXƒ`ƒƒ‚ð•`‰æ
+	// èƒŒæ™¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æç”»
 //	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 //	glEnable(GL_BLEND);
@@ -611,13 +611,13 @@ void slideModelObject::drawTexture()
 
 void slideModelObject::drawForegroundTexture()
 {
-	//ƒeƒNƒXƒ`ƒƒ‚ð“\‚è•t‚¯‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘ã‚‹
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 		foreground_img.cols, foreground_img.rows,
 		0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, foreground_img.data);
 
-	// ”wŒiƒeƒNƒXƒ`ƒƒ‚ð•`‰æ
+	// èƒŒæ™¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æç”»
 //	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);

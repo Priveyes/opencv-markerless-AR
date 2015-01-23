@@ -47,7 +47,7 @@ public:
 	~mqoSeqModelObject(void);
 
 public:
-	MQO_SEQUENCE model_seq;	// ƒ‚ƒfƒ‹\‘¢‘Ì
+	MQO_SEQUENCE model_seq;	// ãƒ¢ãƒ‡ãƒ«æ§‹é€ ä½“
 
 public:
 	void init();

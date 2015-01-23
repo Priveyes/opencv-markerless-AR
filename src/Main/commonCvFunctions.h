@@ -52,29 +52,29 @@ void writeMatBinary(std::ofstream& ofs, const cv::Mat& out_mat);
 */
 void readMatBinary(std::ifstream& ifs, cv::Mat& in_mat);
 
-cv::Mat transPointVecToMat(std::vector<cv::Point2f>& pt_vec, std::vector<unsigned char>& mask);	// Point2f\‘¢‘Ì‚ğMatŒ^‚Ö•ÏŠ·
+cv::Mat transPointVecToMat(std::vector<cv::Point2f>& pt_vec, std::vector<unsigned char>& mask);	// Point2fæ§‹é€ ä½“ã‚’Matå‹ã¸å¤‰æ›
 cv::Mat transPointVecToMat(std::vector<cv::Point2f>& pt_vec);
-cv::Mat transPointVecToMatHom(std::vector<cv::Point2f>& pt_vec);	// Point2f\‘¢‘Ì‚ğÄŸÀ•W‚É‚µ‚ÄMatŒ^‚Ö•ÏŠ·
-cv::Mat transPointVecToMat2D(std::vector<cv::Point2f>& pt_vec, std::vector<unsigned char>& mask);	// Point2f\‘¢‘Ì‚ğMatŒ^‚Ö•ÏŠ·
+cv::Mat transPointVecToMatHom(std::vector<cv::Point2f>& pt_vec);	// Point2fæ§‹é€ ä½“ã‚’æ–‰æ¬¡åº§æ¨™ã«ã—ã¦Matå‹ã¸å¤‰æ›
+cv::Mat transPointVecToMat2D(std::vector<cv::Point2f>& pt_vec, std::vector<unsigned char>& mask);	// Point2fæ§‹é€ ä½“ã‚’Matå‹ã¸å¤‰æ›
 cv::Mat transPointVecToMat2D(std::vector<cv::Point2f>& pt_vec);
 std::vector<cv::Point2f> calcAffineTransformRect(cv::Size& regimg_size, cv::Mat& transMat);
 std::vector<cv::Point2f> calcAffineTransformPoints(std::vector<cv::Point2f>& pts_vec, cv::Mat& transMat);
-//int checkPointsDistance(std::vector<cv::Point2f> &src_pts, std::vector<cv::Point2f> &dest_pts, double dist_threshold, std::vector<unsigned char>& status);	// ƒAƒtƒBƒ“•ÏŠ·Œã‚Ì2‚Â‚Ì“_‚Ì‹——£‚ªè‡’lˆÈã‚Ì‚à‚Ì‚Ístatus‚ğ0‚É‚·‚é
-bool checkRectShape(std::vector<cv::Point2f>& rect_pt);	// Ë‰e•ÏŠ·‚µ‚½‹éŒ`‚ÌŒ`ó‚ğƒ`ƒFƒbƒN‚·‚é
-cv::Mat createMask(cv::Size img_size, std::vector<cv::Point2f>& pts);	// pts‚Åw’è‚µ‚½4“_‚ğˆÍ‚Şƒ}ƒXƒN‚ğì¬‚·‚é
+//int checkPointsDistance(std::vector<cv::Point2f> &src_pts, std::vector<cv::Point2f> &dest_pts, double dist_threshold, std::vector<unsigned char>& status);	// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›å¾Œã®2ã¤ã®ç‚¹ã®è·é›¢ãŒé–¾å€¤ä»¥ä¸Šã®ã‚‚ã®ã¯statusã‚’0ã«ã™ã‚‹
+bool checkRectShape(std::vector<cv::Point2f>& rect_pt);	// å°„å½±å¤‰æ›ã—ãŸçŸ©å½¢ã®å½¢çŠ¶ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+cv::Mat createMask(cv::Size img_size, std::vector<cv::Point2f>& pts);	// ptsã§æŒ‡å®šã—ãŸ4ç‚¹ã‚’å›²ã‚€ãƒã‚¹ã‚¯ã‚’ä½œæˆã™ã‚‹
 int checkInsideArea(std::vector<cv::Point2f>& points, std::vector<cv::Point2f>& corner_pts, std::vector<unsigned char>& status);
-bool checkPtInsideImage(cv::Size img_size, std::vector<cv::Point2f>& pts);	// pts‚ª‰æ‘œ—Ìˆæ“à‚É‚ ‚é‚©‚Ì”»’è
+bool checkPtInsideImage(cv::Size img_size, std::vector<cv::Point2f>& pts);	// ptsãŒç”»åƒé ˜åŸŸå†…ã«ã‚ã‚‹ã‹ã®åˆ¤å®š
 //double erf(double x);	// error function
 
-void resizeMatChannel(cv::Mat& src_mat, cv::Mat& dest_mat, double val = 0);	// src_mat‚Ìƒ`ƒƒƒlƒ‹”‚ğchannel‚É•ÏŠ·B‹ó‚¢‚½ƒ`ƒƒƒlƒ‹‚Éval‚ğ“ü‚ê‚é
-template<typename _Tp> void resizeMatChannelType(cv::Mat& src_mat, cv::Mat& dest_mat, double val = 0);	// src_mat‚Ìƒ`ƒƒƒlƒ‹”‚ğchannel‚É•ÏŠ·B‹ó‚¢‚½ƒ`ƒƒƒlƒ‹‚Éval‚ğ“ü‚ê‚é
-void setChannelValue(cv::Mat& dest_mat, int channel, double val = 0);	// w’èƒ`ƒƒƒlƒ‹‚Ì’l‚ğval‚Éİ’è
-template <typename _Tp> void setChannelValueType(cv::Mat& dest_mat, int channel, double val = 0);	// w’èƒ`ƒƒƒlƒ‹‚Ì’l‚ğval‚Éİ’è
+void resizeMatChannel(cv::Mat& src_mat, cv::Mat& dest_mat, double val = 0);	// src_matã®ãƒãƒ£ãƒãƒ«æ•°ã‚’channelã«å¤‰æ›ã€‚ç©ºã„ãŸãƒãƒ£ãƒãƒ«ã«valã‚’å…¥ã‚Œã‚‹
+template<typename _Tp> void resizeMatChannelType(cv::Mat& src_mat, cv::Mat& dest_mat, double val = 0);	// src_matã®ãƒãƒ£ãƒãƒ«æ•°ã‚’channelã«å¤‰æ›ã€‚ç©ºã„ãŸãƒãƒ£ãƒãƒ«ã«valã‚’å…¥ã‚Œã‚‹
+void setChannelValue(cv::Mat& dest_mat, int channel, double val = 0);	// æŒ‡å®šãƒãƒ£ãƒãƒ«ã®å€¤ã‚’valã«è¨­å®š
+template <typename _Tp> void setChannelValueType(cv::Mat& dest_mat, int channel, double val = 0);	// æŒ‡å®šãƒãƒ£ãƒãƒ«ã®å€¤ã‚’valã«è¨­å®š
 
 std::vector<cv::Point2f> scalePoints(std::vector<cv::Point2f>& point_vec, double scale);
-void decomposeHomography(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation);		// ƒzƒ‚ƒOƒ‰ƒtƒB‚ğ‰ñ“]s—ñ‚Æ•Àis—ñ‚Ö•ÏX
+void decomposeHomography(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation);		// ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ã‚’å›è»¢è¡Œåˆ—ã¨ä¸¦é€²è¡Œåˆ—ã¸å¤‰æ›´
 template<typename _Tp> void decomposeHomographyType(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation);
-void decomposeHomography(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation, cv::Point2f marker_center);		// ƒzƒ‚ƒOƒ‰ƒtƒB‚ğ‰ñ“]s—ñ‚Æ•Àis—ñ‚Ö•ÏX
+void decomposeHomography(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation, cv::Point2f marker_center);		// ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ã‚’å›è»¢è¡Œåˆ—ã¨ä¸¦é€²è¡Œåˆ—ã¸å¤‰æ›´
 template<typename _Tp> void decomposeHomographyType(cv::Mat& H_mat, cv::Mat& camera_matrix, cv::Mat& rotation, cv::Mat& translation, cv::Point2f marker_center);
 
 };

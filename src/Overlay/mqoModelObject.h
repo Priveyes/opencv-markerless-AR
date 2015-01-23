@@ -47,7 +47,7 @@ public:
 	~mqoModelObject(void);
 
 public:
-	MQO_MODEL model;	// ƒ‚ƒfƒ‹\‘¢‘Ì
+	MQO_MODEL model;	// ãƒ¢ãƒ‡ãƒ«æ§‹é€ ä½“
 
 public:
 	void init();

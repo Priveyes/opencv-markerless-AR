@@ -473,13 +473,13 @@ int main(int argc, char * argv[])
 				int num_frames = 0;
 				ofstream list_f(dir_name + "\\imglist.txt"); 
 				do {
-					// ƒJƒƒ‰‚©‚ç‰æ‘œ‚ğƒLƒƒƒvƒ`ƒƒ
+					// ã‚«ãƒ¡ãƒ©ã‹ã‚‰ç”»åƒã‚’ã‚­ãƒ£ãƒ—ãƒãƒ£
 					capture >> frame;
-					// ƒLƒƒƒvƒ`ƒƒ‚µ‚½‰æ‘œ‚ğ•\¦
+					// ã‚­ãƒ£ãƒ—ãƒãƒ£ã—ãŸç”»åƒã‚’è¡¨ç¤º
 					imshow( windowNameCam, frame );
 					if(counter >= interv){
 						counter = 0;
-						// •Û‘¶ƒtƒ@ƒCƒ‹–¼
+						// ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
 						std::ostringstream ost;
 						ost << dir_name << "\\" << file_name << "_" << num_frames << ".png";
 						list_f << ost.str() << endl;
@@ -526,7 +526,7 @@ int main(int argc, char * argv[])
 //					ifs.getline(buf,sizeof(buf));
 					cout << id << ":" << buf << "..." << endl;
 
-					// ‰æ‘œ‚ÌŠi”[æ‚ğ’è‹`
+					// ç”»åƒã®æ ¼ç´å…ˆã‚’å®šç¾©
 					Mat	frame = imread(buf);
 
 					camera_calib.addCheckerImage(frame);

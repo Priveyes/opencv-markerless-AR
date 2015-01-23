@@ -102,7 +102,7 @@ int imageDB::registImageFeatures(int img_id, Size img_size, vector<KeyPoint> kp_
 {
 	featureInfo	feat_info;
 
-	// ToDo: —áŠOˆ— kp_vec.size()‚Æid_list.size()‚Ì•sˆê’v
+	// ToDo: ä¾‹å¤–å‡¦ç† kp_vec.size()ã¨id_list.size()ã®ä¸ä¸€è‡´
 
 	imageInfo	img_info;
 	img_info.feature_num = kp_vec.size();
@@ -110,7 +110,7 @@ int imageDB::registImageFeatures(int img_id, Size img_size, vector<KeyPoint> kp_
 	pair<map<int,imageInfo>::iterator,bool>	ret_insert;
 	ret_insert = imgInfo_map.insert(pair<int,imageInfo>(img_id, img_info));
 
-	// ToDo: —áŠOˆ—
+	// ToDo: ä¾‹å¤–å‡¦ç†
 	if(!(bool)(ret_insert.second)){
 		return -1;
 	}
@@ -125,7 +125,7 @@ int imageDB::registImageFeatures(int img_id, Size img_size, vector<KeyPoint> kp_
 	int size = kp_vec.size();
 
 	// regist image features as img_id
-	// ToDo: —áŠOˆ—
+	// ToDo: ä¾‹å¤–å‡¦ç†
 	for(i=0;i<size;i++){
 		if(id_list[i*voteNum]>=0){
 			keypoint_id = getVacantKptId();
@@ -140,7 +140,7 @@ int imageDB::registImageFeatures(int img_id, Size img_size, vector<KeyPoint> kp_
 }
 
 
-// keypoint_id‚ÌŠ„‚è“–‚Ä
+// keypoint_idã®å‰²ã‚Šå½“ã¦
 int imageDB::getVacantKptId()
 {
 	int size = keypoint_map.size();
@@ -160,7 +160,7 @@ int imageDB::getVacantKptId()
 }
 
 
-// img_id‚Ìî•ñ‚ðDB‚©‚çíœ
+// img_idã®æƒ…å ±ã‚’DBã‹ã‚‰å‰Šé™¤
 int imageDB::removeImageId(int img_id)
 {
 	/////// erase img_id from imginfo_map //////

@@ -47,9 +47,9 @@ public:
 
 private:
 	cv::Mat prevImg;
-	std::vector<cv::Point2f> corners;	// 追跡点
-	std::vector<cv::Point2f> object_position;	// 四隅の点
-	std::vector<unsigned char> track_status;	// 追跡出来ている点のマスク
+	std::vector<cv::Point2f> corners;	// 霑ｽ霍｡轤ｹ
+	std::vector<cv::Point2f> object_position;	// 蝗幃嚆縺ｮ轤ｹ
+	std::vector<unsigned char> track_status;	// 霑ｽ霍｡蜃ｺ譚･縺ｦ縺�繧狗せ縺ｮ繝槭せ繧ｯ
 	int max_corners;
 	double quality_level;
 	double min_distance;

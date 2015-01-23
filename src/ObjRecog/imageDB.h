@@ -111,20 +111,20 @@ private:
 	void releaseImgVoteMap();
 
 private:
-	std::multimap<int,featureInfo>	feature_KPT_map;	// feature_id‚ğƒL[‚Ékeypoint_id‚Æimg_id‚ğŒŸõ
-	std::map<int,cv::KeyPoint>	keypoint_map;	// keypoint_id‚ğƒL[‚ÉKeyPoint‚ğŒŸõ
-	std::map<int,imageInfo>	imgInfo_map;	// img_id‚ğƒL[‚Éfeature_num‚ğŒŸõ
-	std::map<int,std::vector<featureVote>*>	imgVote_map;	// img_id‚ğƒL[‚ÉvoteTable‚ğŒŸõ
+	std::multimap<int,featureInfo>	feature_KPT_map;	// feature_idã‚’ã‚­ãƒ¼ã«keypoint_idã¨img_idã‚’æ¤œç´¢
+	std::map<int,cv::KeyPoint>	keypoint_map;	// keypoint_idã‚’ã‚­ãƒ¼ã«KeyPointã‚’æ¤œç´¢
+	std::map<int,imageInfo>	imgInfo_map;	// img_idã‚’ã‚­ãƒ¼ã«feature_numã‚’æ¤œç´¢
+	std::map<int,std::vector<featureVote>*>	imgVote_map;	// img_idã‚’ã‚­ãƒ¼ã«voteTableã‚’æ¤œç´¢
 
-//	int visual_word_num;	// visual word‚Ì”
-	int imageNum;	// “o˜^‰æ‘œ–‡”
-	int featureNum;	// “o˜^“Á’¥“_”
+//	int visual_word_num;	// visual wordã®æ•°
+	int imageNum;	// ç™»éŒ²ç”»åƒæšæ•°
+	int featureNum;	// ç™»éŒ²ç‰¹å¾´ç‚¹æ•°
 	int voteNum;
-	float threshold;	// “Á’¥“_ƒ}ƒbƒ`‚Ì‚µ‚«‚¢’l(0 - 1)
+	float threshold;	// ç‰¹å¾´ç‚¹ãƒãƒƒãƒã®ã—ãã„å€¤(0 - 1)
 	float geo_threshold;
-	double dist_diff_threshold;	// ‘Î‰“_‚ÌˆÊ’u‚ÉŠÖ‚·‚é‹–—eŒë·(‰æ‘œƒTƒCƒY‚Ì”äF0 - 1)
-//	double angle_diff_threshold;	// ‘Î‰“_‚ÌŠp“x‚ÉŠÖ‚·‚é‹–—eŒë· 180“x~(0 - 1)
-//	double scale_diff_threshold;	// ‘Î‰“_‚ÌƒXƒP[ƒ‹‚ÉŠÖ‚·‚é‹–—eŒë· (ƒTƒCƒY‚Ì”äF> 1)
+	double dist_diff_threshold;	// å¯¾å¿œç‚¹ã®ä½ç½®ã«é–¢ã™ã‚‹è¨±å®¹èª¤å·®(ç”»åƒã‚µã‚¤ã‚ºã®æ¯”ï¼š0 - 1)
+//	double angle_diff_threshold;	// å¯¾å¿œç‚¹ã®è§’åº¦ã«é–¢ã™ã‚‹è¨±å®¹èª¤å·® 180åº¦Ã—(0 - 1)
+//	double scale_diff_threshold;	// å¯¾å¿œç‚¹ã®ã‚¹ã‚±ãƒ¼ãƒ«ã«é–¢ã™ã‚‹è¨±å®¹èª¤å·® (ã‚µã‚¤ã‚ºã®æ¯”ï¼š> 1)
 };
 
 };

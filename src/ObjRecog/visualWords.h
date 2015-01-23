@@ -54,8 +54,8 @@ public:
 	*/
 	bool isReady();
 
-	void addFeatures(const cv::Mat& feature);	// Visual Wordì¬—p‚Ì“Á’¥—Ê‚ğ’Ç‰Á
-	void createVW(int cluster_num = 0);	// Visual Word‚ğì¬
+	void addFeatures(const cv::Mat& feature);	// Visual Wordä½œæˆç”¨ã®ç‰¹å¾´é‡ã‚’è¿½åŠ 
+	void createVW(int cluster_num = 0);	// Visual Wordã‚’ä½œæˆ
 
 	// Load & Save
 	bool save(const std::string& filename) const;
@@ -75,8 +75,8 @@ private:
 	// search DB functions
 //	int releaseSearchDB();
 	static void convertFeatureMat(const std::vector<cv::Mat>& src_feature, cv::Mat& dest_feature);	// combine vector to Mat
-	bool save_vw_binary(const std::string& filename) const;	// visualWordƒf[ƒ^‚ğƒoƒCƒiƒŠŒ`®‚Å•Û‘¶
-	bool load_vw_binary(const std::string& filename);	// visualWordƒf[ƒ^‚ğƒoƒCƒiƒŠŒ`®‚Å•Û‘¶
+	bool save_vw_binary(const std::string& filename) const;	// visualWordãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒŠãƒªå½¢å¼ã§ä¿å­˜
+	bool load_vw_binary(const std::string& filename);	// visualWordãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒŠãƒªå½¢å¼ã§ä¿å­˜
 	bool saveIndex(const std::string& filename) const;
 	bool loadIndex(const std::string& filename);
 	void writeIndex(cv::FileStorage& FS, const std::string& name) const;

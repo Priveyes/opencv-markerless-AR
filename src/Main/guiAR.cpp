@@ -60,22 +60,22 @@ using namespace cvar::or;
 using namespace cvar::tracking;
 using namespace cvar::overlay;
 
-controlOR* ctrlOR = 0;	// “Á’è•¨‘Ì”F¯ƒNƒ‰ƒX
-trackingOBJ* trckOBJ = 0;	// ƒIƒuƒWƒFƒNƒg’ÇÕƒNƒ‰ƒX
-viewModel *viewMDL;	// OpenGL‰æ‘œ•\¦ƒNƒ‰ƒXiƒVƒ“ƒOƒ‹ƒgƒ“j
+controlOR* ctrlOR = 0;	// ç‰¹å®šç‰©ä½“èªè­˜ã‚¯ãƒ©ã‚¹
+trackingOBJ* trckOBJ = 0;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½è·¡ã‚¯ãƒ©ã‚¹
+viewModel *viewMDL;	// OpenGLç”»åƒè¡¨ç¤ºã‚¯ãƒ©ã‚¹ï¼ˆã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ï¼‰
 
-VideoCapture capture( 0 );	// ƒJƒƒ‰ƒLƒƒƒvƒ`ƒƒ
-int seq_id = 0;	// ƒgƒ‰ƒbƒLƒ“ƒO‚ÌƒV[ƒPƒ“ƒXID
-int wait_seq_id = 0; // ”ñƒgƒ‰ƒbƒLƒ“ƒO‚ÌƒV[ƒPƒ“ƒXID
-bool track_f = false;	// ƒgƒ‰ƒbƒLƒ“ƒOƒtƒ‰ƒO
-int query_scale=1;	// ƒNƒGƒŠ[‰æ‘œk¬ƒXƒP[ƒ‹
-int max_query_size = 320;	// Å‘åƒNƒGƒŠ[‰æ‘œƒTƒCƒY
-Mat query_image;	// ‰æ‘œ”F¯ƒNƒGƒŠ[—pk¬‰æ‘œƒTƒCƒY
-//Mat pose_mat_scale;	// ƒzƒ‚ƒOƒ‰ƒtƒBs—ñŠi”[—p
-string config_file = "config.xml";	// İ’èƒtƒ@ƒCƒ‹
+VideoCapture capture( 0 );	// ã‚«ãƒ¡ãƒ©ã‚­ãƒ£ãƒ—ãƒãƒ£
+int seq_id = 0;	// ãƒˆãƒ©ãƒƒã‚­ãƒ³ã‚°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ID
+int wait_seq_id = 0; // éãƒˆãƒ©ãƒƒã‚­ãƒ³ã‚°æ™‚ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ID
+bool track_f = false;	// ãƒˆãƒ©ãƒƒã‚­ãƒ³ã‚°ãƒ•ãƒ©ã‚°
+int query_scale=1;	// ã‚¯ã‚¨ãƒªãƒ¼ç”»åƒç¸®å°ã‚¹ã‚±ãƒ¼ãƒ«
+int max_query_size = 320;	// æœ€å¤§ã‚¯ã‚¨ãƒªãƒ¼ç”»åƒã‚µã‚¤ã‚º
+Mat query_image;	// ç”»åƒèªè­˜ã‚¯ã‚¨ãƒªãƒ¼ç”¨ç¸®å°ç”»åƒã‚µã‚¤ã‚º
+//Mat pose_mat_scale;	// ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£è¡Œåˆ—æ ¼ç´ç”¨
+string config_file = "config.xml";	// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
 
-//ƒXƒNƒŠ[ƒ“ƒTƒCƒY‚ÌƒvƒƒpƒeƒB
-bool fullscreen = false;	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh
+//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+bool fullscreen = false;	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰
 int screen_pos_x;
 int screen_pos_y;
 int screen_width;
@@ -163,10 +163,10 @@ void setARConfig(Size& frame_size)
 {
 	try{
 		FileStorage cvfs;
-		// Configƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+		// Configãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 		cvfs.open(config_file, CV_STORAGE_READ);
 
-		// “ü—ÍƒtƒŒ[ƒ€—pƒeƒNƒXƒ`ƒƒƒTƒCƒY(2‚Ì—İæ)‚ğŒvZ
+		// å…¥åŠ›ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º(2ã®ç´¯ä¹—)ã‚’è¨ˆç®—
 		int tw = 128;
 		int th = 128;
 		while(frame_size.width > tw){
@@ -177,7 +177,7 @@ void setARConfig(Size& frame_size)
 		}
 		viewMDL->setTwoPowerSize(tw,th);
 
-		// visual word‚Ì“Ç‚İ‚İ
+		// visual wordã®èª­ã¿è¾¼ã¿
 		FileNode fn;
 		fn = cvfs["VisualWord"];
 		std::string vwfile;
@@ -191,13 +191,13 @@ void setARConfig(Size& frame_size)
 			ctrlOR->loadVisualWordsBinary(vwfile, idxfile);
 		}
 
-		// ƒIƒuƒWƒFƒNƒgDB‚Ì“Ç‚İ‚İ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆDBã®èª­ã¿è¾¼ã¿
 		ctrlOR->loadObjectDB(cvfs["ObjectDB"]);
 
-		// ‰æ‘œ”F¯ƒNƒGƒŠ[—pÅ‘å‰æ‘œƒTƒCƒY‚Ì“Ç‚İ‚İ
+		// ç”»åƒèªè­˜ã‚¯ã‚¨ãƒªãƒ¼ç”¨æœ€å¤§ç”»åƒã‚µã‚¤ã‚ºã®èª­ã¿è¾¼ã¿
 		cvfs["max_query_size"] >> max_query_size;
 
-		// ƒNƒGƒŠ[—p‰æ‘œƒTƒCƒY‚ğ“KØ‚È‘å‚«‚³‚Ök¬‚µ‚Ä—ÌˆæŠm•Û
+		// ã‚¯ã‚¨ãƒªãƒ¼ç”¨ç”»åƒã‚µã‚¤ã‚ºã‚’é©åˆ‡ãªå¤§ãã•ã¸ç¸®å°ã—ã¦é ˜åŸŸç¢ºä¿
 		int frame_max_size;
 		if(frame_size.width > frame_size.height){
 			frame_max_size = frame_size.width;
@@ -211,18 +211,18 @@ void setARConfig(Size& frame_size)
 		}
 		query_image.create(frame_size.height/query_scale, frame_size.width/query_scale, CV_8UC1);
 
-		// ƒJƒƒ‰“à•”ƒpƒ‰ƒ[ƒ^‚Ì“Ç‚İ‚İ
+		// ã‚«ãƒ¡ãƒ©å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		Mat camera_matrix;
 		FileStorage fs(cvfs["camera_matrix"], FileStorage::READ);
 		fs["camera_matrix"] >> camera_matrix;
 		viewMDL->init(frame_size, camera_matrix);
 
-		// Å“_‹——£İ’èiÈ—ª‚µ‚½ê‡‚Í1.0‚Éİ’è‚³‚ê‚éj
+		// ç„¦ç‚¹è·é›¢è¨­å®šï¼ˆçœç•¥ã—ãŸå ´åˆã¯1.0ã«è¨­å®šã•ã‚Œã‚‹ï¼‰
 		if(!cvfs["focal_length"].isNone()){
 			viewMDL->setFocalLength(cvfs["focal_length"]);
 		}
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ì“Ç‚İ‚İ
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®èª­ã¿è¾¼ã¿
 		string str_flg;
 		if(cvfs["full_screen_mode"].isNone()){
 			str_flg = "false";
@@ -236,7 +236,7 @@ void setARConfig(Size& frame_size)
 			}
 		}
 
-		// ƒ~ƒ‰[ƒ‚[ƒh‚Ì“Ç‚İ‚İ
+		// ãƒŸãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã®èª­ã¿è¾¼ã¿
 		if(cvfs["mirror_mode"].isNone()){
 			str_flg = "false";
 		}
@@ -250,7 +250,7 @@ void setARConfig(Size& frame_size)
 			viewMDL->setMirrorMode(false);
 		}
 
-		// dô•\¦‚Ì‚½‚ß‚Ìƒ‚ƒfƒ‹î•ñ“Ç‚İ‚İ
+		// é‡ç•³è¡¨ç¤ºã®ãŸã‚ã®ãƒ¢ãƒ‡ãƒ«æƒ…å ±èª­ã¿è¾¼ã¿
 		fn = cvfs["model_info"];
 		FileNode fn2;
 		viewMDL->releaseModel();
@@ -270,7 +270,7 @@ void setARConfig(Size& frame_size)
 			fn_itr++;
 		}
 
-		// ‘Ò‚¿ó‚¯‚É•\¦‚·‚éƒ‚ƒfƒ‹î•ñ“Ç‚İ‚İ
+		// å¾…ã¡å—ã‘æ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¢ãƒ‡ãƒ«æƒ…å ±èª­ã¿è¾¼ã¿
 		fn = cvfs["WaitingModel"];
 		if(!fn.isNone()){
 			int timer = fn["timer"];
@@ -289,30 +289,30 @@ void displayFunc(void)
 {
 #ifndef NO_CAMERA
 	Mat frame;
-	if (capture.isOpened()) { //ƒJƒƒ‰‚ª‘¶İ‚·‚é‚Æ‚«
-		//ƒLƒƒƒvƒ`ƒƒ
+	if (capture.isOpened()) { //ã‚«ãƒ¡ãƒ©ãŒå­˜åœ¨ã™ã‚‹ã¨ã
+		//ã‚­ãƒ£ãƒ—ãƒãƒ£
 		capture >> frame;
-	} else { //ƒJƒƒ‰‚ª‘¶İ‚µ‚È‚¢‚Æ‚«
-		//“Á‚É‚â‚é‚±‚Æ‚È‚µ
+	} else { //ã‚«ãƒ¡ãƒ©ãŒå­˜åœ¨ã—ãªã„ã¨ã
+		//ç‰¹ã«ã‚„ã‚‹ã“ã¨ãªã—
 	}
 #else
 	frame = imread(imgname);
 #endif
 
 #ifndef NO_OBJRECOG
-	//ƒeƒNƒXƒ`ƒƒ‚É•`‰æ‚µ‚½‚¢‰æ‘œ‚ğ“Š‚°‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»ã—ãŸã„ç”»åƒã‚’æŠ•ã’ã‚‹
 	Mat grayImg;
 	cvtColor(frame, grayImg, CV_BGR2GRAY);
 
 	if(!track_f){
 		try{
 			cv::resize(grayImg, query_image, query_image.size());
-			vector<resultInfo> recog_result = ctrlOR->queryImage(query_image);	// k¬‰æ‘œ‚Å”F¯
-//			vector<resultInfo> recog_result = ctrlOR->queryImage(grayImg);	// ƒJƒƒ‰‚©‚ç‚Ì‰æ‘œ‚Å”F¯
+			vector<resultInfo> recog_result = ctrlOR->queryImage(query_image);	// ç¸®å°ç”»åƒã§èªè­˜
+//			vector<resultInfo> recog_result = ctrlOR->queryImage(grayImg);	// ã‚«ãƒ¡ãƒ©ã‹ã‚‰ã®ç”»åƒã§èªè­˜
 			if(!recog_result.empty()){
 				cout << "img id: " << recog_result[0].img_id << endl;
 
-				// k¬‰æ‘œ—pƒzƒ‚ƒOƒ‰ƒtƒB‚ğƒJƒƒ‰‰æ‘œ—p‚É•ÏŠ·
+				// ç¸®å°ç”»åƒç”¨ãƒ›ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ã‚’ã‚«ãƒ¡ãƒ©ç”»åƒç”¨ã«å¤‰æ›
 				Mat pose_mat_scale = recog_result[0].pose_mat.clone();
 				pose_mat_scale.row(0) *= query_scale;
 				pose_mat_scale.row(1) *= query_scale;
@@ -354,7 +354,7 @@ void displayFunc(void)
 	viewMDL->drawScene(frame);
 
 
-	////////////////// ƒIƒuƒWƒFƒNƒg‚ğ•`‰æ //////////////////
+	////////////////// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æç”» //////////////////
 //	drawOctahedron();
 #ifndef NO_OVERLAY
 	if(track_f){
@@ -375,7 +375,7 @@ void displayFunc(void)
 	}
 #endif
 
-	// •`‰æiƒoƒbƒtƒ@[“ü‚ê‘Ö‚¦j
+	// æç”»ï¼ˆãƒãƒƒãƒ•ã‚¡ãƒ¼å…¥ã‚Œæ›¿ãˆï¼‰
 //	glFlush();
 
 	glutSwapBuffers();
@@ -383,15 +383,15 @@ void displayFunc(void)
 }
 
 
-// ƒAƒCƒhƒ‹‚ÌƒR[ƒ‹ƒoƒbƒN
+// ã‚¢ã‚¤ãƒ‰ãƒ«æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 void idleFunc()
 {
-	//Ä•`‰æ—v‹
+	//å†æç”»è¦æ±‚
 	glutPostRedisplay();
 }
 
 
-// ƒEƒCƒ“ƒhƒEƒŠƒTƒCƒY‚ÌƒR[ƒ‹ƒoƒbƒN
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒªã‚µã‚¤ã‚ºã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 void resizeFunc(int w, int h) {
 	viewMDL->resize(w,h);
 }
@@ -415,12 +415,12 @@ void fullScreenChange()
 }
 
 
-// ƒL[ƒ{[ƒh“ü—ÍƒR[ƒ‹ƒoƒbƒN
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 void keyboardFunc(unsigned char key, int x, int y) {
 	switch (key) {
   case 'q':
   case 'Q':
-  case '\033':  // '\033' ‚Í ESC ‚Ì ASCII ƒR[ƒh
+  case '\033':  // '\033' ã¯ ESC ã® ASCII ã‚³ãƒ¼ãƒ‰
 	  exit(0);
 	  break;
   case 'f':
@@ -433,7 +433,7 @@ void keyboardFunc(unsigned char key, int x, int y) {
 }
 
 
-// I—¹ŠÖ”
+// çµ‚äº†é–¢æ•°
 void myExit()
 {
 	viewMDL->exitFunc();
@@ -450,14 +450,14 @@ void setControlOR(controlOR& ctrlOR_cls)
 
 int startGUI(int argc, char *argv[])
 {
-	// viewModel‚Ìæ“¾
+	// viewModelã®å–å¾—
 	viewMDL = viewModel::getInstance();
 
-	// I—¹ˆ—‚Ì’è‹`
+	// çµ‚äº†å‡¦ç†ã®å®šç¾©
 	atexit(myExit);
 
 #ifndef NO_CAMERA
-	// ƒJƒƒ‰‰Šú‰»
+	// ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 	if( !capture.isOpened() ) {
 		std::cout << "Failed to Open Camera" << std::endl;
 		return -1;

@@ -62,14 +62,14 @@ void viewModel::exitFunc()
 {
 	releaseModel();
 	releaseWaitModel();
-	mqoCleanup();					// GLMetaseq‚ÌI—¹ˆ—
+	mqoCleanup();					// GLMetaseqã®çµ‚äº†å‡¦ç†
 	glDeleteTextures(1, &texture[0]);
 	mat_type = -1;
 }
 
 bool viewModel::setTwoPowerSize(int w, int h)
 {
-	// two_power_w‚Í2‚ÌNæ
+	// two_power_wã¯2ã®Nä¹—
 	int tmp1;
 	tmp1 = w;
 	while(tmp1 > 1){
@@ -79,7 +79,7 @@ bool viewModel::setTwoPowerSize(int w, int h)
 		tmp1 /= 2;
 	}
 
-	// two_power_h‚Í2‚ÌNæ
+	// two_power_hã¯2ã®Nä¹—
 	tmp1 = h;
 	while(tmp1 > 1){
 		if(tmp1 % 2 > 0){
@@ -153,7 +153,7 @@ bool viewModel::addModel(int id, Size& markerSize, int model_type, const string&
 	mdl_info.modelFilename = model_filename;
 	mdl_info.model = modelFac.create(model_type);
 	mdl_info.model->init();
-	mdl_info.model->loadModelFile((char*)model_filename.c_str());		// ƒ‚ƒfƒ‹‚Ìƒ[ƒh
+	mdl_info.model->loadModelFile((char*)model_filename.c_str());		// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
 	mdl_info.scale = scale;
 //	mdl_info.initRot = convertMatType(initRot);
 	initRot.convertTo(mdl_info.initRot, mat_type);
@@ -162,7 +162,7 @@ bool viewModel::addModel(int id, Size& markerSize, int model_type, const string&
 	pair<map<int,MODEL_INFO>::iterator,bool>	ret_insert;
 	ret_insert = model_map.insert(pair<int,MODEL_INFO>(id, mdl_info));
 
-	// ToDo: —áŠOˆ—
+	// ToDo: ä¾‹å¤–å‡¦ç†
 	if(!(bool)(ret_insert.second)){
 		return false;
 	}
@@ -214,7 +214,7 @@ bool viewModel::addWaitModel(int wait_frame_num, int model_type, const string& m
 			wait_model.modelFilename = model_filename;
 			wait_model.model = modelFac.create(model_type);
 			wait_model.model->init();
-			wait_model.model->loadModelFile((char*)model_filename.c_str());		// ƒ‚ƒfƒ‹‚Ìƒ[ƒh
+			wait_model.model->loadModelFile((char*)model_filename.c_str());		// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
 			wait_model.scale = scale;
 			initRot.convertTo(wait_model.initRot, mat_type);
 			initTrans.convertTo(wait_model.initTrans, mat_type);
@@ -302,29 +302,29 @@ bool viewModel::init(Size& cap_size, Mat& cameraMat, int type)
 	cameraMat.convertTo(cameraMatrix, mat_type);
 //	initAccHomMat(cameraMatrix.type());
 
-	// ƒ‚ƒfƒ‹‚ğ•\¦‚³‚¹‚é€”õ
-	mqoInit();											// GLMetaseq‚Ì‰Šú‰»
+	// ãƒ¢ãƒ‡ãƒ«ã‚’è¡¨ç¤ºã•ã›ã‚‹æº–å‚™
+	mqoInit();											// GLMetaseqã®åˆæœŸåŒ–
 
-	//OpenGL‚³‚ñIƒeƒNƒXƒ`ƒƒì‚Á‚Ä‚­‚¾‚³‚¢‚È„ƒ
+	//OpenGLã•ã‚“ï¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ä½œã£ã¦ãã ã•ã„ãªï¼ï¼œ
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	glGenTextures(1, &texture[0]);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
-	//ƒeƒNƒXƒ`ƒƒ‚Ì‚¢‚ë‚¢‚ë‚Èƒpƒ‰ƒƒ^İ’è
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã„ã‚ã„ã‚ãªãƒ‘ãƒ©ãƒ¡ã‚¿è¨­å®š
 	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-	//æ“¾‰æ‘œ‚Ì•‚Æ‚‚³‚Ì”ä‚ğŒvZ‚·‚é
-	//ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“\‚è•t‚¯‚Ég‚¤
+	//å–å¾—ç”»åƒã®å¹…ã¨é«˜ã•ã®æ¯”ã‚’è¨ˆç®—ã™ã‚‹
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è²¼ã‚Šä»˜ã‘ã«ä½¿ã†
 	aspect_rate = (double)capture_width / (double)capture_height;
 	
-	//OpenCVˆ——p‚Ì‰æ‘œ‚ğ¶¬‚·‚é
-	//OpenGL‚ªˆµ‚¤ƒeƒNƒXƒ`ƒƒ‚ÌŠÖŒW‚ÅC“ñ‚Ìæ”‚Å‚ÈI
+	//OpenCVå‡¦ç†ç”¨ã®ç”»åƒã‚’ç”Ÿæˆã™ã‚‹
+	//OpenGLãŒæ‰±ã†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é–¢ä¿‚ã§ï¼ŒäºŒã®ä¹—æ•°ã§ãªï¼
 	resized_frame.create(two_power_width, two_power_height, CV_8UC3);
 
-	// ƒrƒ…[ƒ|[ƒgì¬
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆä½œæˆ
 	glViewport(0, 0, window_width, window_height);
 
 	return true;
@@ -333,19 +333,19 @@ bool viewModel::init(Size& cap_size, Mat& cameraMat, int type)
 
 void viewModel::drawScene(Mat& img)
 {
-	//“§‹•ÏŠ·s—ñ‚Ìİ’è
+	//é€è¦–å¤‰æ›è¡Œåˆ—ã®è¨­å®š
 	glMatrixMode(GL_PROJECTION);
 
 	glPushMatrix();
 	glLoadIdentity();
 
-	//³Ë‰e•ÏŠ·
+	//æ­£å°„å½±å¤‰æ›
 	glOrtho(-aspect_rate, aspect_rate, -1.0, 1.0, -1.0, 1.0);
 	
-	// ”wŒiƒeƒNƒXƒ`ƒƒ‚ğ•`‰æ
+	// èƒŒæ™¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æç”»
 	glDisable(GL_DEPTH_TEST);
 
-	//ƒeƒNƒXƒ`ƒƒ‚ğ“\‚è•t‚¯‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘ã‚‹
 	updateTexture(img);
 
 	glEnable(GL_TEXTURE_2D);
@@ -363,22 +363,22 @@ void viewModel::drawScene(Mat& img)
 }
 
 
-// ŒõŒ¹‚Ìİ’è‚ğs‚¤ŠÖ”
+// å…‰æºã®è¨­å®šã‚’è¡Œã†é–¢æ•°
 void setLight(void)
 {
-	GLfloat light_diffuse[]  = { 0.9, 0.9, 0.9, 1.0 };	// ŠgU”½ËŒõ
-	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };	// ‹¾–Ê”½ËŒõ
-	GLfloat light_ambient[]  = { 0.3, 0.3, 0.3, 0.1 };	// ŠÂ‹«Œõ
-	GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };	// ˆÊ’u‚Æí—Ş
+	GLfloat light_diffuse[]  = { 0.9, 0.9, 0.9, 1.0 };	// æ‹¡æ•£åå°„å…‰
+	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };	// é¡é¢åå°„å…‰
+	GLfloat light_ambient[]  = { 0.3, 0.3, 0.3, 0.1 };	// ç’°å¢ƒå…‰
+	GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };	// ä½ç½®ã¨ç¨®é¡
 
-	// ŒõŒ¹‚Ìİ’è
-	glLightfv( GL_LIGHT0, GL_DIFFUSE,  light_diffuse );	 // ŠgU”½ËŒõ‚Ìİ’è
-	glLightfv( GL_LIGHT0, GL_SPECULAR, light_specular ); // ‹¾–Ê”½ËŒõ‚Ìİ’è
-	glLightfv( GL_LIGHT0, GL_AMBIENT,  light_ambient );	 // ŠÂ‹«Œõ‚Ìİ’è
-	glLightfv( GL_LIGHT0, GL_POSITION, light_position ); // ˆÊ’u‚Æí—Ş‚Ìİ’è
+	// å…‰æºã®è¨­å®š
+	glLightfv( GL_LIGHT0, GL_DIFFUSE,  light_diffuse );	 // æ‹¡æ•£åå°„å…‰ã®è¨­å®š
+	glLightfv( GL_LIGHT0, GL_SPECULAR, light_specular ); // é¡é¢åå°„å…‰ã®è¨­å®š
+	glLightfv( GL_LIGHT0, GL_AMBIENT,  light_ambient );	 // ç’°å¢ƒå…‰ã®è¨­å®š
+	glLightfv( GL_LIGHT0, GL_POSITION, light_position ); // ä½ç½®ã¨ç¨®é¡ã®è¨­å®š
 
-	glShadeModel( GL_SMOOTH );	// ƒVƒF[ƒfƒBƒ“ƒO‚Ìí—Ş‚Ìİ’è
-	glEnable( GL_LIGHT0 );		// ŒõŒ¹‚Ì—LŒø‰»
+	glShadeModel( GL_SMOOTH );	// ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®ç¨®é¡ã®è¨­å®š
+	glEnable( GL_LIGHT0 );		// å…‰æºã®æœ‰åŠ¹åŒ–
 }
 
 void viewModel::drawObject(Mat& homographyMat, int seq_id)
@@ -396,7 +396,7 @@ void viewModel::drawObject(Mat& homographyMat, int seq_id)
 	}
 }
 
-// ƒ}[ƒJ[‚ÍX-Y•½–Ê‚ÅY‚ª+•ûŒü‚ªãBZ‚ª+•ûŒü‚ªãB
+// ãƒãƒ¼ã‚«ãƒ¼ã¯X-Yå¹³é¢ã§YãŒ+æ–¹å‘ãŒä¸Šã€‚ZãŒ+æ–¹å‘ãŒä¸Šã€‚
 template<typename _Tp> void viewModel::drawObjectType(Mat& homographyMat, int seq_id)
 {
 	cv::Mat rotation, translation, Rot, xRot, iTrans;
@@ -462,16 +462,16 @@ template<typename _Tp> void viewModel::drawObjectType(Mat& homographyMat, int se
 
 //	glTranslatef(0.0, 0.0, -7.0);
 
-	setLight();					// ŒõŒ¹‚Ìİ’è
-	glEnable(GL_LIGHTING);		// ŒõŒ¹ON
+	setLight();					// å…‰æºã®è¨­å®š
+	glEnable(GL_LIGHTING);		// å…‰æºON
 	glEnable(GL_NORMALIZE);
-	glEnable(GL_DEPTH_TEST);		// ‰B–Êˆ—‚Ì“K—p
+	glEnable(GL_DEPTH_TEST);		// éš é¢å‡¦ç†ã®é©ç”¨
 	glEnable(GL_CULL_FACE);
 
 	glPushMatrix();
 		glLoadMatrixd(mtrx);
 		glScaled(model_scale, model_scale, model_scale);
-		curModel->model->drawModel(seq_id);			// MQOƒ‚ƒfƒ‹‚ÌƒR[ƒ‹
+		curModel->model->drawModel(seq_id);			// MQOãƒ¢ãƒ‡ãƒ«ã®ã‚³ãƒ¼ãƒ«
 	glPopMatrix();
 
 	glDisable(GL_LIGHTING);
@@ -492,7 +492,7 @@ void viewModel::drawWaitModel(int seq_id)
 
 	int seq_num = seq_id - wait_frames;
 
-	// •ÏŠ·ƒpƒ‰ƒ[ƒ^æ“¾
+	// å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	double model_scale = wait_model.scale;
 	
 	GLdouble mtrx[16];
@@ -523,32 +523,32 @@ void viewModel::drawWaitModel(int seq_id)
 
 	mtrx[15] = 1;
 
-	//“§‹•ÏŠ·s—ñ‚Ìİ’è
+	//é€è¦–å¤‰æ›è¡Œåˆ—ã®è¨­å®š
 	glMatrixMode(GL_PROJECTION);
 
 	glPushMatrix();
 	glLoadIdentity();
 
-	//³Ë‰e•ÏŠ·
+	//æ­£å°„å½±å¤‰æ›
 	glOrtho(-aspect_rate, aspect_rate, -1.0, 1.0, 0, 2.0);
 	gluLookAt(0,0,1.0,0,0,0,0,1,0);
 	
-	// ƒ‚ƒfƒ‹‚ğ•`‰æ
+	// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»
 	glMatrixMode(GL_MODELVIEW);
 
 //	glTranslatef(0.0, 0.0, -7.0);
 
-	setLight();					// ŒõŒ¹‚Ìİ’è
-	glEnable(GL_LIGHTING);		// ŒõŒ¹ON
+	setLight();					// å…‰æºã®è¨­å®š
+	glEnable(GL_LIGHTING);		// å…‰æºON
 	glEnable(GL_NORMALIZE);
-	glEnable(GL_DEPTH_TEST);		// ‰B–Êˆ—‚Ì“K—p
+	glEnable(GL_DEPTH_TEST);		// éš é¢å‡¦ç†ã®é©ç”¨
 	glEnable(GL_CULL_FACE);
 
 	glPushMatrix();
 		glLoadIdentity();
 		glLoadMatrixd(mtrx);
 		glScaled(model_scale, model_scale, model_scale);
-		wait_model.model->drawModel(seq_num);			// ƒ‚ƒfƒ‹‚ÌƒR[ƒ‹
+		wait_model.model->drawModel(seq_num);			// ãƒ¢ãƒ‡ãƒ«ã®ã‚³ãƒ¼ãƒ«
 	glPopMatrix();
 
 	glDisable(GL_LIGHTING);
@@ -561,7 +561,7 @@ void viewModel::drawWaitModel(int seq_id)
 }
 
 
-// ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏXŠÖ”
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´é–¢æ•°
 void viewModel::resize(int w, int h)
 {
 //	window_width = w;
@@ -587,15 +587,15 @@ void viewModel::resize(int w, int h)
 }
 
 
-// XVŠÖ”
+// æ›´æ–°é–¢æ•°
 void viewModel::updateTexture(Mat& frame)
 {
-	//ƒeƒNƒXƒ`ƒƒ‚ğ“\‚è•t‚¯‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘ã‚‹
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 	Mat img;
 
-	// OpenGL—p‚É‰æ‘œ”½“]
+	// OpenGLç”¨ã«ç”»åƒåè»¢
 	if(mirror_f){
 		cv::flip(frame, img, -1);
 	}
@@ -603,10 +603,10 @@ void viewModel::updateTexture(Mat& frame)
 		cv::flip(frame, img, 0);
 	}
 
-	//ƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚é‚½‚ßA2‚Ì—İæ‚ÉƒŠƒTƒCƒY‚·‚é
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã‚‹ãŸã‚ã€2ã®ç´¯ä¹—ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹
 	cv::resize(img, resized_frame, resized_frame.size());
 
-	//ª‚Ì‚â‚Â‚ğƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚é
+	//â†‘ã®ã‚„ã¤ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã‚‹
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
 		resized_frame.cols,resized_frame.rows,
 		0, GL_BGR_EXT, GL_UNSIGNED_BYTE, resized_frame.data);

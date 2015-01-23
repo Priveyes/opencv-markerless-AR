@@ -38,7 +38,7 @@ using namespace cv;
 
 namespace cvar{
 
-// CSVƒtƒ@ƒCƒ‹‚©‚çs—ñ‚ğì¬‚·‚é
+// CSVãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 CvMat* loadCsvFileAsMatrix(char* filename, int cv_type)
 {
 	FILE* fp;
@@ -165,7 +165,7 @@ void createMatchingImage(Mat& src_img, Mat& dest_img, vector<Point>& src_pts, ve
 }
 
 
-// w’èƒTƒCƒY‚ğ‚Í‚İo‚é“_‚ğƒTƒCƒY“à‹ß–T“_‚É‹ß—
+// æŒ‡å®šã‚µã‚¤ã‚ºã‚’ã¯ã¿å‡ºã‚‹ç‚¹ã‚’ã‚µã‚¤ã‚ºå†…è¿‘å‚ç‚¹ã«è¿‘ä¼¼
 void truncatePoint(cv::Size& size, cv::Point2f& pt)
 {
 	if(pt.x < 0)
@@ -179,7 +179,7 @@ void truncatePoint(cv::Size& size, cv::Point2f& pt)
 }
 
 
-// ‚S“_‚ğ‚Â‚È‚®’¼ü‚ğ•`‰æ
+// ï¼”ç‚¹ã‚’ã¤ãªãç›´ç·šã‚’æç”»
 void drawLineContour(Mat& src_img, vector<Point2f>& points, Scalar& color, int thickness, int lineType, int shift)
 {
 	int pt_num = points.size();

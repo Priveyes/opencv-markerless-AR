@@ -35,19 +35,19 @@
 
 #include <opencv2/core/core.hpp>
 #include "modelObjectFactory.h"
-//#include "GLMetaseq.h"	// ƒ‚ƒfƒ‹ƒ[ƒ_
+//#include "GLMetaseq.h"	// ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ€
 
 namespace cvar{
 namespace overlay{
 
 typedef struct{
-	modelObject* model;	// ƒ‚ƒfƒ‹ƒNƒ‰ƒX
-	double scale;	// ƒ‚ƒfƒ‹‚ÌƒTƒCƒY‚ğw’è
-	std::string modelFilename;	// ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-	cv::Mat initRot;	// ‰ŠúˆÊ’u‚Ö‚Ì3~3‰ñ“]s—ñiƒ}[ƒJ[‚ÍZ=0‚ÌX-Y•½–Ê‚ÅAZ‚ª+•ûŒü‚ªãAY‚ª+•ûŒü‚ª‰œs‚«j
-	cv::Mat initTrans;	// ‰ŠúˆÊ’u‚Ö‚ÌˆÚ“®¬•ª
-	cv::Point2f	markerCenter;	// ƒ}[ƒJ[’†SˆÊ’u
-	cv::Size markerSize;	// ƒ}[ƒJ[ƒTƒCƒY
+	modelObject* model;	// ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹
+	double scale;	// ãƒ¢ãƒ‡ãƒ«ã®ã‚µã‚¤ã‚ºã‚’æŒ‡å®š
+	std::string modelFilename;	// ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+	cv::Mat initRot;	// åˆæœŸä½ç½®ã¸ã®3Ã—3å›è»¢è¡Œåˆ—ï¼ˆãƒãƒ¼ã‚«ãƒ¼ã¯Z=0ã®X-Yå¹³é¢ã§ã€ZãŒ+æ–¹å‘ãŒä¸Šã€YãŒ+æ–¹å‘ãŒå¥¥è¡Œãï¼‰
+	cv::Mat initTrans;	// åˆæœŸä½ç½®ã¸ã®ç§»å‹•æˆåˆ†
+	cv::Point2f	markerCenter;	// ãƒãƒ¼ã‚«ãƒ¼ä¸­å¿ƒä½ç½®
+	cv::Size markerSize;	// ãƒãƒ¼ã‚«ãƒ¼ã‚µã‚¤ã‚º
 }MODEL_INFO;
 
 class viewModel
@@ -79,8 +79,8 @@ public:
 public:
 	cv::Mat	resized_frame;
 
-	int two_power_width;	// 2‚Ì—İæ‚É‡‚í‚¹‚é‚½‚ß‚ÌƒŠƒTƒCƒYæƒTƒCƒY
-	int two_power_height;	// 512‚©1024‚ ‚½‚è‚ª“K“–
+	int two_power_width;	// 2ã®ç´¯ä¹—ã«åˆã‚ã›ã‚‹ãŸã‚ã®ãƒªã‚µã‚¤ã‚ºå…ˆã‚µã‚¤ã‚º
+	int two_power_height;	// 512ã‹1024ã‚ãŸã‚ŠãŒé©å½“
 
 	int window_width;
 	int window_height;
@@ -89,16 +89,16 @@ public:
 	int capture_height;
 
 	GLuint texture[1];
-//	MQO_MODEL g_mqoModel;	// MQOƒ‚ƒfƒ‹
-	double aspect_rate;			// ƒLƒƒƒvƒ`ƒƒ‚Ìc‰¡”ä
-	float focal_length;		// Å“_‹——£
+//	MQO_MODEL g_mqoModel;	// MQOãƒ¢ãƒ‡ãƒ«
+	double aspect_rate;			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã®ç¸¦æ¨ªæ¯”
+	float focal_length;		// ç„¦ç‚¹è·é›¢
 
-	cv::Mat cameraMatrix;	// ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^s—ñ
+	cv::Mat cameraMatrix;	// ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡Œåˆ—
 
 //	double model_scale;
 	std::map<int,MODEL_INFO>	model_map;
 
-	// ‘Ò‚¿ó‚¯
+	// å¾…ã¡å—ã‘
 	int wait_frames;
 	MODEL_INFO wait_model;
 
@@ -113,8 +113,8 @@ protected:
 public:
 	bool init(cv::Size& frame_size, cv::Mat& cameraMat);
 	bool init(cv::Size& frame_size, cv::Mat& cameraMat, int type);
-	void resize(int win_w, int win_h);	// ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏXŠÖ”
-	void updateTexture(cv::Mat& frame);	// XVŠÖ”
+	void resize(int win_w, int win_h);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´é–¢æ•°
+	void updateTexture(cv::Mat& frame);	// æ›´æ–°é–¢æ•°
 	void release();
 	void exitFunc();
 
