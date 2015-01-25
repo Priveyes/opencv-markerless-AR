@@ -54,7 +54,7 @@ void native_gl_render(JNIEnv *env UNUSED, jclass clazz UNUSED)
 	glLoadIdentity();									// Reset The Current Modelview Matrix
 	glScalef(2,2,2);
 	glTranslatef(-1.5f,0.0f,-6.0f);						// Move Left 1.5 Units And Into The Screen 6.0
-	glClearColor(0,0,0,1);
+	glClearColor(0,0,0,0);
 	
 	
 	//glDeleteTextures(1,&Name);	
