@@ -194,63 +194,81 @@ void native_touch_event(JNIEnv *env,jclass clazz,jfloat x,jfloat y,jint status)
 
 
 cvar::controlOR	ctrlOR;
+bool init = false;
+Mat query_image;
 
-void native_FindFeatures(JNIEnv *env,jclass clazz,jlong addrGray, jlong addrRgba)
+int native_FindFeatures(JNIEnv *env,jclass clazz,jlong addrGray, jlong addrRgba)
 {
 	
 	//LOGI("native_FindFeatures  gray:%ld rgba:%ld",addrGray,addrRgba);
 
 	Mat& frame  = *(Mat*)addrGray;
 
+	if(!init){
+		Size frame_size = Size(frame.cols, frame.rows);
+
+		FileStorage cvfs;
+		cvfs.open("/sdcard/CVGL/config.xml", CV_STORAGE_READ);
+
+
+		FileNode fn;
+		fn = cvfs["VisualWord"];
+		std::string vwfile;
+		fn["visualWord"] >> vwfile;
+		LOGI("visualWord = %s",vwfile.c_str());
+
+		std::string idxfile;
+		fn["index"] >> idxfile;
+		if(idxfile.empty()){
+			ctrlOR.loadVisualWords(vwfile);
+		}
+		else{
+			ctrlOR.loadVisualWordsBinary(vwfile, idxfile);
+		}
+
+		ctrlOR.loadObjectDB(cvfs["ObjectDB"]);
+
+		int max_query_size = 320;
+		cvfs["max_query_size"] >> max_query_size;
+
+		// クエリー用画像サイズを適切な大きさへ縮小して領域確保
+		int frame_max_size;
+		if(frame_size.width > frame_size.height){
+			frame_max_size = frame_size.width;
+		}
+		else{
+			frame_max_size = frame_size.height;
+		}
+
+		int query_scale=1;
+		query_scale = 1;
+		while((frame_max_size / query_scale) > max_query_size){
+			query_scale*=2;
+		}
+		query_image.create(frame_size.height/query_scale, frame_size.width/query_scale, CV_8UC1);
+		init = true;
+
+		LOGI("frame_max_size = %d",frame_max_size);   //800
+		LOGI("frame_size.height = %d",frame_size.height);   //480
+		LOGI("frame_size.width = %d",frame_size.width);      //800
+		LOGI("query_scale = %d",query_scale);                //4
+
+	}
+
 	
-	Size frame_size = Size(frame.cols, frame.rows);
-
-	FileStorage cvfs;
-	cvfs.open("/sdcard/CVGL/config.xml", CV_STORAGE_READ);
-
-
-	FileNode fn;
-	fn = cvfs["VisualWord"];
-	std::string vwfile;
-	fn["visualWord"] >> vwfile;
-	LOGI("visualWord = %s",vwfile.c_str());
-
-	std::string idxfile;
-	fn["index"] >> idxfile;
-	if(idxfile.empty()){
-		ctrlOR.loadVisualWords(vwfile);
-	}
-	else{
-		ctrlOR.loadVisualWordsBinary(vwfile, idxfile);
-	}
-
-	ctrlOR.loadObjectDB(cvfs["ObjectDB"]);
-
-	int max_query_size = 320;
-	cvfs["max_query_size"] >> max_query_size;
-
-	// クエリー用画像サイズを適切な大きさへ縮小して領域確保
-	int frame_max_size;
-	if(frame_size.width > frame_size.height){
-		frame_max_size = frame_size.width;
-	}
-	else{
-		frame_max_size = frame_size.height;
-	}
-
-	int query_scale=1;
-	query_scale = 1;
-	while((frame_max_size / query_scale) > max_query_size){
-		query_scale*=2;
-	}
-	Mat query_image;
-	query_image.create(frame_size.height/query_scale, frame_size.width/query_scale, CV_8UC1);
 
 	cv::resize(frame, query_image, query_image.size());
+
 	vector<cvar::resultInfo> recog_result = ctrlOR.queryImage(query_image);
 	if(!recog_result.empty()){
-		LOGI("Recognized %d !!!",recog_result[0].img_id);
+		LOGI("Recognized id=%d,probility=%f,matchnum=%d, size=%d",
+			recog_result[0].img_id,
+			recog_result[0].probability,
+			recog_result[0].matched_num,
+			recog_result[0].object_position.size());
+		return recog_result[0].img_id;
 	}
+	return 0;
 
 
 

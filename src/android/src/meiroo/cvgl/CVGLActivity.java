@@ -48,6 +48,9 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
     private MenuItem               mItemPreviewFeatures;
 
     private CameraBridgeViewBase   mOpenCvCameraView;
+    
+    public long time = 0;
+    public static int result = 0;
 
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -154,7 +157,15 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
             // input frame has RGBA format
             mRgba = inputFrame.rgba();
             mGray = inputFrame.gray();
-            native_FindFeatures(mGray.getNativeObjAddr(), mRgba.getNativeObjAddr());
+            
+            
+
+			if (SystemClock.uptimeMillis() - time >= 1000) {
+				time = SystemClock.uptimeMillis();
+				result = native_FindFeatures(mGray.getNativeObjAddr(), mRgba.getNativeObjAddr());
+				//Log.i("GLAndroid","recog result = " + result);
+			}
+            
             break;
         }
 
@@ -176,7 +187,7 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
 
         return true;
     }
-    static native void native_FindFeatures(long matAddrGr, long matAddrRgba);
+    static native int native_FindFeatures(long matAddrGr, long matAddrRgba);
     static native void native_start();
 	static native void native_gl_resize(int w, int h);
 	static native void native_gl_render();
@@ -271,7 +282,13 @@ class GlBufferView extends GLSurfaceView {
 				avgFPS = 0;
 			}
 			framerate++;
-			CVGLActivity.native_gl_render();
+			
+			if(CVGLActivity.result > 0){
+				CVGLActivity.native_gl_render();
+			}else{
+				gl.glClearColor(0,0,0,0);
+				gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+			}
 		}
 		public long time = 0;
 		public short framerate = 0;
