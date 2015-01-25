@@ -85,6 +85,8 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial2_activity_surface_view);
         mOpenCvCameraView.setCvCameraViewListener(this);
+        
+        Utils.CopyAssets(getResources().getAssets(), "/sdcard/", "CVGL");
     }
 
     @Override
