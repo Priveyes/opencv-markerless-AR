@@ -139,7 +139,7 @@ public class Tutorial2Activity extends Activity implements CvCameraViewListener2
             // input frame has RGBA format
             mRgba = inputFrame.rgba();
             mGray = inputFrame.gray();
-            FindFeatures(mGray.getNativeObjAddr(), mRgba.getNativeObjAddr());
+            native_FindFeatures(mGray.getNativeObjAddr(), mRgba.getNativeObjAddr());
             break;
         }
 
@@ -161,6 +161,5 @@ public class Tutorial2Activity extends Activity implements CvCameraViewListener2
 
         return true;
     }
-
-    public native void FindFeatures(long matAddrGr, long matAddrRgba);
+    private static native void native_FindFeatures(long matAddrGr, long matAddrRgba);
 }
