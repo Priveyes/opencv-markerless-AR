@@ -18,6 +18,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.EGLConfig;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -86,7 +87,7 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial2_activity_surface_view);
         mOpenCvCameraView.setCvCameraViewListener(this);
         
-        Utils.CopyAssets(getResources().getAssets(), "/sdcard/", "CVGL");
+        //Utils.CopyAssets(getResources().getAssets(), Environment.getExternalStorageDirectory().getPath(), "CVGL");
     }
 
     @Override
@@ -266,7 +267,7 @@ class GlBufferView extends GLSurfaceView {
 			if (time >= (fpsTime + 3000.0f)) {
 				fpsTime = time;
 				avgFPS /= 3.0f;
-				Log.d("GLAndroid", "FPS: " + Float.toString(avgFPS));
+				//Log.d("GLAndroid", "FPS: " + Float.toString(avgFPS));
 				avgFPS = 0;
 			}
 			framerate++;
