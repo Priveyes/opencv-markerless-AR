@@ -11,6 +11,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/features2d/features2d.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <vector>
 
 using namespace std;
@@ -188,9 +189,12 @@ void native_touch_event(JNIEnv *env,jclass clazz,jfloat x,jfloat y,jint status)
 {
 }
 
+
+
 void native_FindFeatures(JNIEnv *env,jclass clazz,jlong addrGray, jlong addrRgba)
 {
-	LOGI("native_FindFeatures  gray:%ld rgba:%ld",addrGray,addrRgba);
+	
+	//LOGI("native_FindFeatures  gray:%ld rgba:%ld",addrGray,addrRgba);
 	Mat& mGr  = *(Mat*)addrGray;
     Mat& mRgb = *(Mat*)addrRgba;
     vector<KeyPoint> v;

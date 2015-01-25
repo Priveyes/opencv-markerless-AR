@@ -57,6 +57,7 @@ public class CVGLActivity extends Activity implements CvCameraViewListener2 {
                     Log.i(TAG, "OpenCV loaded successfully");
 
                     // Load native library after(!) OpenCV initialization
+                    System.loadLibrary("nonfree");
                     System.loadLibrary("cvgl");
 
                     mOpenCvCameraView.enableView();
