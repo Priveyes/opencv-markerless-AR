@@ -70,6 +70,8 @@ bool kltTrackingOBJ::onTracking(const Mat& grayImg)
 {
 	std::vector<cv::Point2f> next_corners;
 	std::vector<float> err;
+	if(corners.size() == 0)
+		return false;
 	calcOpticalFlowPyrLK(prevImg, grayImg, corners, next_corners, track_status, err);
 		
 	int tr_num = 0;
