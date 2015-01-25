@@ -11,11 +11,11 @@
 static const char *s_class_path_name = "meiroo/cvgl/CVGLActivity";
 
 static JNINativeMethod s_methods[] = {
-	// {"native_start", "()V", (void*) native_start},
-	// {"native_gl_resize", "(II)V", (void*) native_gl_resize},
-	// {"native_gl_render", "()V", (void*) native_gl_render},
-	// {"native_key_event", "(II)V", (void*) native_key_event},
-	// {"native_touch_event", "(FFI)V", (void*) native_touch_event},
+	{"native_start", "()V", (void*) native_start},
+	{"native_gl_resize", "(II)V", (void*) native_gl_resize},
+	{"native_gl_render", "()V", (void*) native_gl_render},
+	{"native_key_event", "(II)V", (void*) native_key_event},
+	{"native_touch_event", "(FFI)V", (void*) native_touch_event},
 	{"native_FindFeatures", "(JJ)V", (void*) native_FindFeatures},
 };
 
