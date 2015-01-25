@@ -8,7 +8,7 @@
 #define NELEM(x) ((int)(sizeof(x) / sizeof((x)[0])))
 #endif
 
-static const char *s_class_path_name = "org/opencv/samples/tutorial2/Tutorial2Activity";
+static const char *s_class_path_name = "meiroo/cvgl/CVGLActivity";
 
 static JNINativeMethod s_methods[] = {
 	// {"native_start", "()V", (void*) native_start},

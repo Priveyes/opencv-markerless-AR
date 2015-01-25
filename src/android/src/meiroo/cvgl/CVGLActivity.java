@@ -1,4 +1,4 @@
-package org.opencv.samples.tutorial2;
+package meiroo.cvgl;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
@@ -9,6 +9,7 @@ import org.opencv.core.Mat;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
 import org.opencv.imgproc.Imgproc;
+import meiroo.cvgl.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
-public class Tutorial2Activity extends Activity implements CvCameraViewListener2 {
+public class CVGLActivity extends Activity implements CvCameraViewListener2 {
     private static final String    TAG = "OCVSample::Activity";
 
     private static final int       VIEW_MODE_RGBA     = 0;
@@ -46,7 +47,7 @@ public class Tutorial2Activity extends Activity implements CvCameraViewListener2
                     Log.i(TAG, "OpenCV loaded successfully");
 
                     // Load native library after(!) OpenCV initialization
-                    System.loadLibrary("mixed_sample");
+                    System.loadLibrary("cvgl");
 
                     mOpenCvCameraView.enableView();
                 } break;
@@ -58,7 +59,7 @@ public class Tutorial2Activity extends Activity implements CvCameraViewListener2
         }
     };
 
-    public Tutorial2Activity() {
+    public CVGLActivity() {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
