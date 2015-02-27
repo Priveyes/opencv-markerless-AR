@@ -145,7 +145,7 @@ int main(int argc, char * argv[])
 			cin >> opt2;
 
 			ifstream ifs(opt2.c_str());
-			if(ifs!=NULL){
+			if(ifs){
 				bool exitflag2 = false;
 				int count = 0;
 				string buf;
@@ -221,7 +221,7 @@ int main(int argc, char * argv[])
 //			char buf[256];
 			string buf;
 			ifstream ifs(regist_list.c_str());
-			if(ifs!=NULL){
+			if(ifs){
 //			if(ifs.is_open()){
 				bool exitflag2 = false;
 				int count = 0;
@@ -369,7 +369,7 @@ int main(int argc, char * argv[])
 			string buf;
 			ifstream ifs(img_list.c_str());
 			ofstream ofs(result_file.c_str());
-			if(ifs!=NULL){
+			if(ifs){
 //			if(ifs.is_open()){
 				int id = 1;
 //				while(!ifs.eof()){
@@ -518,7 +518,7 @@ int main(int argc, char * argv[])
 
 			ifstream ifs(img_list.c_str());
 			string buf;
-			if(ifs!=NULL){
+			if(ifs){
 //			if(ifs.is_open()){
 				int id = 1;
 //				while(!ifs.eof()){
