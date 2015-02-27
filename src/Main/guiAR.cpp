@@ -284,14 +284,16 @@ void setARConfig(Size& frame_size)
 	}
 }
 
-
+long fcount = 0;
 void displayFunc(void)
 {
+	long start, end;
 #ifndef NO_CAMERA
 	Mat frame;
 	if (capture.isOpened()) { //カメラが存在するとき
 		//キャプチャ
 		capture >> frame;
+		fcount++;
 	} else { //カメラが存在しないとき
 		//特にやることなし
 	}
@@ -301,16 +303,23 @@ void displayFunc(void)
 
 #ifndef NO_OBJRECOG
 	//テクスチャに描画したい画像を投げる
+	
 	Mat grayImg;
 	cvtColor(frame, grayImg, CV_BGR2GRAY);
 
+	
+	
 	if(!track_f){
 		try{
+			start = GetTickCount();
 			cv::resize(grayImg, query_image, query_image.size());
 			vector<resultInfo> recog_result = ctrlOR->queryImage(query_image);	// 縮小画像で認識
 //			vector<resultInfo> recog_result = ctrlOR->queryImage(grayImg);	// カメラからの画像で認識
 			if(!recog_result.empty()){
-				cout << "img id: " << recog_result[0].img_id << endl;
+				end = GetTickCount();
+				cout << "recognize image: " << recog_result[0].img_id << " cost: " << end-start <<" ms" << endl;
+
+				
 
 				// 縮小画像用ホモグラフィをカメラ画像用に変換
 				Mat pose_mat_scale = recog_result[0].pose_mat.clone();
@@ -338,8 +347,14 @@ void displayFunc(void)
 		}
 	}
 	else{
+		start = GetTickCount();
 		track_f = trckOBJ->onTracking(grayImg);
 		seq_id++;
+		if (track_f){
+			end = GetTickCount();
+			cout << fcount <<" frame tracked image:  seq_id = " << seq_id << " cost: " << end - start << " ms" << endl;
+		}
+
 	}
 #endif
 
