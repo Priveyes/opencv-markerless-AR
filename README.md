@@ -6,15 +6,19 @@ url： https://github.com/takmin/OpenCV-Marker-less-AR
 
 I hava compiled the source code under windows8. and changed the opencv version to 2.4.9.
 
-this is the video : 
+this is my testing video : 
 
 http://v.youku.com/v_show/id_XOTAyNzUzMzY0.html 
+
+I have moved the recognize part to the android platform.
 
 ### iOS version of OpenCV recognize and tracking : 
 
 I also made some examples under ios. this is a optical flow tracking example.
 
 http://webgl.qiniudn.com/CV-ios.m4v
+
+Under iphone 5c , the recognize process cost 50-80ms, tracking process cost 15-25ms.
 
 ###AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。
 
