@@ -3,8 +3,12 @@
 ###based on takmin project:
 
 url： https://github.com/takmin/OpenCV-Marker-less-AR
+
 I hava compiled the source code under windows8. and changed the opencv version to 2.4.9.
-this is the video : http://v.youku.com/v_show/id_XOTAyNzUzMzY0.html 
+
+this is the video : 
+
+http://v.youku.com/v_show/id_XOTAyNzUzMzY0.html 
 
 ### iOS version of OpenCV recognize and tracking : 
 
