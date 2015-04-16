@@ -1,8 +1,16 @@
 ##http://meiroo.github.io/#explorer
 
-###基于takmin项目
+###based on takmin project:
 
-原项目地址： https://github.com/takmin/OpenCV-Marker-less-AR
+url： https://github.com/takmin/OpenCV-Marker-less-AR
+I hava compiled the source code under windows8. and changed the opencv version to 2.4.9.
+this is the video : http://v.youku.com/v_show/id_XOTAyNzUzMzY0.html 
+
+### iOS version of OpenCV recognize and tracking : 
+
+I also made some examples under ios. this is a optical flow tracking example.
+
+http://webgl.qiniudn.com/CV-ios.m4v
 
 ###AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。
 
@@ -101,40 +109,3 @@ int native_FindFeatures(JNIEnv *env,jclass clazz,jlong addrGray, jlong addrRgba)
   * Android版本也比较慢。但是还能接受。（大黄蜂）
   * 现在只有两个样本。对比样本增大后速度如何保证。算法识别部分需要分析下复杂度。
 
-
-
-
-
-###以下为原作者readme
-
-2012/01/10
-Marker less AR is using natural images as markers instead of monochromatic markers.   This program includes object recognition, tracking, and overlay of 3D model functions.
-You can use this program source code under MIT license.
-http://www.opensource.org/licenses/mit-license.php
-
-This program was written in C++ using OpenCV 2.3.1 and GLUT 3.7.6.  You should install these libraries before you compile this source code. 
-
-GLUT
-http://www.opengl.org/resources/libraries/glut/
-
-OpenCV
-https://sourceforge.net/projects/opencvlibrary/
-
-This program also includes "GLMetaseq" which had been developed by Sunao Hashimoto and Keisuke Konishi.
-GLMetaseq is 3D model loader of mqo format.
-
-GLMetaseq
-http://kougaku-navi.net/ARToolKit.html
-
-The Windows demo program "ARengine.exe" includes a 3D models "mikuX.mqo", I obtained these files created by Zusa-san from:
-http://nanoha.kirara.st/3dcg/file/dlrank.php
-
-This program consists of 3 parts: Object Recognition, Tracking, and Overlay.  You can use Object Recognition function apart from tracking and overlay.
-
-If you are a Windows user, I strongly recommend to begin with demo program.  This demo program is build on Windows 7 (32bit).  You can find how to use it in "HowToUse.pdf" in WinDemo.zip.
-This source code is still alpha version and I've not written enough documents yet.  
-This code is still on the way of refactoring, so API interface design will be changed later.  I will write API documents after refactoring.
-At the current version, the only document "HowToUse.pdf" may be helpful to understand this application.
-
-If you have any question, please contact here:
-Takuya MINAGAWA (z.takmin@gmail.com)
