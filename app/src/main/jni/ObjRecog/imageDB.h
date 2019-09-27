@@ -34,6 +34,7 @@
 #define __IMAGE_DB__
 
 #include <opencv2/features2d/features2d.hpp>
+#include <map>
 
 namespace cvar{
 

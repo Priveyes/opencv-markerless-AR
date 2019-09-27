@@ -43,7 +43,7 @@
 #ifndef __OPENCV_NONFREE_HPP__
 #define __OPENCV_NONFREE_HPP__
 
-#include "opencv2/nonfree/features2d.hpp"
+#include "android-nonfree/include/features2d.hpp"
 
 namespace cv
 {

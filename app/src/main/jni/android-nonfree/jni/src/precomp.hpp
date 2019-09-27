@@ -52,6 +52,8 @@
 #include "opencv2/core/internal.hpp"
 
 #include "opencv2/nonfree/gpu.hpp"
+#include "../../../../../../../../OpenCV-3.4.1-android-sdk/sdk/native/jni/include/opencv2/core/base.hpp"
+#include "../../../../../../../../OpenCV-3.4.1-android-sdk/sdk/native/jni/include/opencv2/core/types_c.h"
 
 #if defined(HAVE_CUDA) && defined(HAVE_OPENCV_GPU) && !defined(DYNAMIC_CUDA_SUPPORT)
     #include "opencv2/gpu/stream_accessor.hpp"

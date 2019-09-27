@@ -596,7 +596,7 @@ int imageDB::load(const string& filename)
 
 int imageDB::write(FileStorage& cvfs, const string& name) const
 {
-	WriteStructContext ws(cvfs, name, CV_NODE_MAP);
+	cv::internal::WriteStructContext ws(cvfs, name, CV_NODE_MAP);
 	cv::write(cvfs,"imageNum",imageNum);
 	cv::write(cvfs,"featureNum",featureNum);
 	cv::write(cvfs,"threshold",threshold);
@@ -632,12 +632,12 @@ int imageDB::read(const FileStorage& cvfs, const FileNode& node)
 int imageDB::writeFeatureKptMap(FileStorage& cvfs, const string& name) const
 {
 	try{
-		WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
+		cv::internal::WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
 
 		multimap<int,featureInfo>::const_iterator itr = feature_KPT_map.begin();
 		featureInfo	feature_info;
 		while(itr!= feature_KPT_map.end()){
-			WriteStructContext ws2(cvfs, "", CV_NODE_MAP);
+			cv::internal::WriteStructContext ws2(cvfs, "", CV_NODE_MAP);
 			cv::write(cvfs, "feature_id", itr->first);
 			feature_info = itr->second;
 			cv::write(cvfs, "keypoint_id",feature_info.keypoint_id);
@@ -681,11 +681,11 @@ int imageDB::readFeatureKptMap(const FileStorage& cvfs, const FileNode& node)
 
 int imageDB::writeKeyMap(FileStorage& cvfs, const string& name) const
 {
-	WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
+	cv::internal::WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
 
 	map<int,KeyPoint>::const_iterator itr = keypoint_map.begin();
 	while(itr!= keypoint_map.end()){
-		WriteStructContext ws2(cvfs, "", CV_NODE_MAP);
+		cv::internal::WriteStructContext ws2(cvfs, "", CV_NODE_MAP);
 		cv::write(cvfs, "keypoint_id", itr->first);
 		vector<KeyPoint>	kpt_vec;
 		kpt_vec.push_back(itr->second);
@@ -718,12 +718,12 @@ int imageDB::readKeyMap(const FileStorage& cvfs, const FileNode& node)
 
 int imageDB::writeImgInfoMap(FileStorage& cvfs, const string& name) const
 {
-	WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
+	cv::internal::WriteStructContext ws(cvfs, name, CV_NODE_SEQ);
 
 	imageInfo	img_info;
 	map<int, imageInfo>::const_iterator itr = imgInfo_map.begin();
 	while(itr!= imgInfo_map.end()){
-		WriteStructContext ws2(cvfs, "", CV_NODE_SEQ);
+		cv::internal::WriteStructContext ws2(cvfs, "", CV_NODE_SEQ);
 		cv::write(cvfs, itr->first);
 		img_info = itr->second;
 		cv::write(cvfs, img_info.feature_num);

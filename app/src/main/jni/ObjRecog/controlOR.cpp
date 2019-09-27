@@ -31,7 +31,7 @@
 //
 //M*/
 #include "controlOR.h"
-#include <opencv2/nonfree/nonfree.hpp>
+#include <android-nonfree/include/nonfree.hpp>
 #include <sstream>
 
 using namespace std;
@@ -323,7 +323,7 @@ int controlOR::saveObjectDB(const string filename) const
 
 void controlOR::write(FileStorage& fs, string name) const
 {
-	WriteStructContext ws(fs, name, CV_NODE_MAP);
+	cv::internal::WriteStructContext ws(fs, name, CV_NODE_MAP);
 	cv::write(fs, "voteNum", voteNum);
 	cv::write(fs, "detectorType", detectorType);
 	cv::write(fs, "descriptorType", descriptorType);
@@ -348,7 +348,7 @@ int controlOR::initializeFeatureDetector()
 }
 
 //int controlOR::extractFeatures(const Mat& src_img, vector<KeyPoint>& kpt, vector<float>& descriptor)
-int controlOR::extractFeatures(const cv::Mat& src_img, cv::vector<cv::KeyPoint>& kpt, cv::Mat& descriptor) const
+int controlOR::extractFeatures(const cv::Mat& src_img, vector<cv::KeyPoint>& kpt, cv::Mat& descriptor) const
 {
 	// extract freak
 	try{
